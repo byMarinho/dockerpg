@@ -1,0 +1,21 @@
+services:
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    logging:
+      options:
+        max-size: "50m"
+    container_name: pgAdminSQL
+    restart: unless-stopped
+    depends_on:
+      - dbPostgreSQL
+    env_file:
+      - .env
+    ports:
+      - 8008:80
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+    networks:
+      - pgNetwork
+
+volumes:
+  pgadmin:
