@@ -16,6 +16,9 @@ services:
       - ./data/pgadmin:/var/lib/pgadmin
     networks:
       - pgNetwork
+    # Limites de recursos para uso local
+    cpus: "1.0"
+    mem_limit: 256m
 
 volumes:
   pgadmin:
