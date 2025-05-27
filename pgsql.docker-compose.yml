@@ -1,0 +1,27 @@
+services:
+  pgsql:
+    image: postgres
+    logging:
+      options:
+        max-size: "50m"
+    container_name: pgsql
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data/pgsql:/var/lib/postgresql/data
+    ports:
+      - "15432:5432"
+    networks:
+      - pgnet
+    # Limites de recursos para uso local
+    cpus: "1.0"
+    mem_limit: 512m
+
+volumes:
+  pgsql:
+
+networks:
+  pgnet:
+    name: pgnet
+    external: true
